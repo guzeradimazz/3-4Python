@@ -1,36 +1,75 @@
-{% extends 'base.html' %}
 {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Instagram</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="card" style="width: 50vw; margin: 0 auto; margin-top: 20vh">
+            <div class="card-content">
+                <form method="post" action="" role="form" class="col s12">
+                    {% csrf_token %}
+                    <h3>Login</h3>
 
-        
-{% block content %}
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <label class="label">Username</label>
+                            {{ form.username }}
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
 
-<div class="row center-align">
-    <form method="post" action="" role="form" class="col s12">
-    {% csrf_token %}
-    <h3>Login</h3>
-      <div class="row">
-        <div class="input-field col s12">
-          {{ form.username }}
-          <label for="username">Username</label>
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <label class="label">Password</label>
+                            {{ form.password }}
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    {% if form.errors %}
+                    <div class="row">
+                        <div class="col s12">
+                            <span style="color: red; font-weight: bold"
+                                >Your username or password did not match.</span
+                            >
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="control">
+                        <button
+                            type="submit"
+                            value="login"
+                            class="button is-primary"
+                        >
+                            Login
+                        </button>
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <a href="{% url 'signup' %}"> Create an account </a>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
-       <div class="row">
-        <div class="input-field col s12">
-          {{ form.password }}
-          <label for="password">Password</label>
-        </div>
-      </div>
-      {% if form.errors %}
-      <div class="row">
-        <div class="col s12">
-          <span style="color: red; font-weight: bold;">Your username or password did not match.</span>
-        </div>
-      </div>
-      {% endif %}
-      <button type="submit" value="login" class="btn waves-effect waves-light"><i class="material-icons left">send</i>Login</button>
-      <input type="hidden" name="next" value="{{ next }}">
-      <button class="btn waves-effect waves-light"><i class="material-icons left">account_circle</i>Create an account</button>
-    </form>
-  </div>
-
-{% endblock %}
+    </body>
+</html>

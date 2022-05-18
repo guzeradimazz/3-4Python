@@ -16,7 +16,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -27,9 +26,6 @@ SECRET_KEY = 'django-insecure-&t6j4%v-6spfz58d&4p4e^!9wd-1dnj#9_$wu#bful6%@p462-
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,7 +52,7 @@ ROOT_URLCONF = 'instagram_django.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'instagram_django/templates ')],
+        'DIRS': [os.path.join(BASE_DIR,'instagram_django/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +66,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'instagram_django.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -125,8 +120,8 @@ MEDIA_ROOT = [os.path.join(BASE_DIR,'media')]
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'login'
+LOGIN_REDIRECT_URL = '/index/'
+LOGOUT_REDIRECT_URL = '/login/'
 LOGIN_URL = '/user/login/'
 
 # Default primary key field type
