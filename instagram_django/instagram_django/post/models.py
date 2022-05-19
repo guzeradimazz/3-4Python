@@ -7,25 +7,26 @@ import uuid
 # Create your models here.
 
 def user_directory_path(instance, filename):
-    return 'user_{0}/{1}'.format(instance.user.id,filename)
+    return 'user_{0}/{1}'.format(instance.user.id, filename)
 
 class Tag(models.Model):
-    title= models.CharField(max_length=50,verbose_name='Tag')
-    slug = models.SlugField(null=False,unique=True)
-    class Meta:
-        verbose_name='Tag'
-        verbose_name_plural='Tags'
+	title = models.CharField(max_length=75, verbose_name='Tag')
+	slug = models.SlugField(null=False, unique=True)
 
-    def get_absolute_url(self):
-        return reverse('tags',arg=[self.slug])
+	class Meta:
+		verbose_name='Tag'
+		verbose_name_plural = 'Tags'
 
-    def __str__(self):
-        return self.title
+	def get_absolute_url(self):
+		return reverse('tags', args=[self.slug])
+		
+	def __str__(self):
+		return self.title
 
-    def save(self,*args,**kwargs):
-        if not self.slug:
-            self.slug = slugify(self.title)
-        return super().save(*args,**kwargs)
+	def save(self, *args, **kwargs):
+		if not self.slug:
+			self.slug = slugify(self.title)
+		return super().save(*args, **kwargs)
 
 class Post(models.Model):
     id= models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
@@ -39,6 +40,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('postdetails',args=[str(self.id)])
 
+    # def __str__(self):
+    #         return str(self.id)
+
 class Follow(models.Model):
 	follower = models.ForeignKey(User,on_delete=models.CASCADE, null=True, related_name='follower')
 	following = models.ForeignKey(User,on_delete=models.CASCADE, null=True, related_name='following')
@@ -49,7 +53,7 @@ class Stream(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
     date = models.DateTimeField()
 
-    def add_post(sender,instance,*args,**kwargs):
+    def add_post(sender, instance, *args, **kwargs):
         post = instance
         user = post.user
         followers = Follow.objects.all().filter(following=user)
