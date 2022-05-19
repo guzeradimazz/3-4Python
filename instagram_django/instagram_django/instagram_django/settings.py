@@ -125,7 +125,7 @@ MEDIA_ROOT = '/Users/dimaguzercuk/Desktop/instagram/instagram_django/instagram_d
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/index/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/user/login/'
 LOGIN_URL = '/user/login/'
 
 # Default primary key field type

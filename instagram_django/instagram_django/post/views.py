@@ -1,9 +1,10 @@
 from re import template
 from turtle import pos
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib.auth.decorators import login_required
 from matplotlib.style import context
 from numpy import require
+from yaml import load
 from post.models import Post,Stream,Tag
 from django.template import loader
 from django.http import HttpResponse
@@ -51,3 +52,25 @@ def NewPost(request):
         'form':form,
     }
     return render(request,'newpost.html',context)
+
+@login_required
+def PostDetails(request, post_id):
+	post = get_object_or_404(Post, id=post_id)
+	template = loader.get_template('post_details.html')
+
+	context = {
+		'post':post,
+	}
+
+	return HttpResponse(template.render(context, request))
+
+@login_required
+def tags(request,tag_slug):
+    tag = get_object_or_404(Tag,slug=tag_slug)
+    posts = Post.objects.filter(tags=tag).order_by('-posted')
+    template = loader.get_template('tag.html')
+    context={
+        'posts':posts,
+        'tag':tag,
+    }
+    return HttpResponse(template.render(context,request))
