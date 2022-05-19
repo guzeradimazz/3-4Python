@@ -1,15 +1,10 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <div style="width: 60%; margin: 0 auto">
     <div class="card">
         <div class="card-image">
             <figure class="image is-4by3">
-                <img
-                    src="{{ post.picture.url }}"
-                    alt="Placeholder image"
-                />
+                <img src="{{ post.picture.url }}" alt="Placeholder image" />
             </figure>
         </div>
         <div class="card-content">
@@ -25,6 +20,33 @@
                 <div class="media-content">
                     <p class="title is-4">{{ post.user.username }}</p>
                     <p class="subtitle is-6">@{{ post.user.username }}</p>
+                </div>
+                <div class="media-right">
+                    <div>
+                        <a
+                            href="{% url 'postlike' post.id %}"
+                            style="color: red"
+                            ><i
+                                class="like material-icons"
+                                style="position: absolute; right: 105px"
+                                >favorite</i
+                            >
+                            Likes: {{ post.likes }}</a
+                        >
+                        <p style="color: red"></p>
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a
+                            href="{% url 'postlike' post.id %}"
+                            style="color: rgb(70, 22, 193)"
+                            ><i
+                                class="like material-icons"
+                                style="position: absolute; right: 105px"
+                                >send</i
+                            >
+                            Save post</a
+                        >
+                    </div>
                 </div>
             </div>
 
