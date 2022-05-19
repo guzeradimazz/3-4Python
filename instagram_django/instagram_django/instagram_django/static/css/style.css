@@ -2,6 +2,9 @@ form input {
     width: 100%;
     
 }
+.POST{
+    margin-top: 30px !important;
+}
 .signup {
     background-color: rgb(245, 194, 98);
     padding: 9px;

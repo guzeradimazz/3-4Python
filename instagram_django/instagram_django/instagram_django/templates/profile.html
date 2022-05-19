@@ -1,177 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Instagram</title>
-        <link rel="stylesheet" href="css/bulma.min.css" />
-        <link
-            href="https://fonts.googleapis.com/icon?family=Material+Icons"
-            rel="stylesheet"
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div style="margin-top: 100px; margin-left: 100px">
+    <figure class="image is-128x128">
+        <img
+            class="is-rounded"
+            src="https://bulma.io/images/placeholders/128x128.png"
         />
-    </head>
-    <body>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
-                    <img src="images/logo.png" width="40" />
-                </a>
+    </figure>
+    <div>
+        <h1 class="title">Title</h1>
+        <h2 class="subtitle">Subtitle</h2>
+    </div>
+    <button style="margin-top: 10px" class="button is-success is-light">
+        Follow
+    </button>
+</div>
+<nav class="level" style="margin-top: 50px">
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Tweets</p>
+            <p class="title">3,456</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Following</p>
+            <p class="title">123</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Followers</p>
+            <p class="title">456K</p>
+        </div>
+    </div>
+    <div class="level-item has-text-centered">
+        <div>
+            <p class="heading">Likes</p>
+            <p class="title">789</p>
+        </div>
+    </div>
+</nav>
+<div style="margin-left: 150px; margin-right: 130px">
+    <p class="subtitle">
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+        minima necessitatibus beatae esse laboriosam quis accusantium provident
+        voluptatem porro molestias, tempora numquam architecto. Inventore
+        commodi architecto iusto eaque, illo quidem.
+    </p>
+    <button style="margin-top: 10px" class="button is-warning is-light">
+        Edit profile
+    </button>
+</div>
 
-                <a
-                    role="button"
-                    class="navbar-burger"
-                    aria-label="menu"
-                    aria-expanded="false"
-                    data-target="navbarBasicExample"
-                >
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
+<div class="tabs is-centered">
+    <ul>
+        <li class="is-active"><a>Posts</a></li>
+        <li><a>Saved</a></li>
+    </ul>
+</div>
+<div class="posts" style="display: flex; flex-wrap: wrap">
+    <div class="box" style="width: 20%; margin: auto">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256">
+                    <img
+                        src="https://bulma.io/images/placeholders/256x256.png"
+                        alt="Image"
+                    />
+                </figure>
             </div>
-
-            <div id="navbarBasicExample" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item"> Home </a>
-                    <a class="navbar-item"> Explore </a>
-                    <a class="navbar-item"> Notifications </a>
-                    <a class="navbar-item"> Direct </a>
-                    <a class="navbar-item"> Profile </a>
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a class="navbar-link"> Settings </a>
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item"> Change password </a>
-                            <a class="navbar-item"> Contact </a>
-                            <a class="navbar-item"> Report an issue </a>
-                            <hr class="navbar-divider" />
-                            <a class="navbar-item"> Log out </a>
-                        </div>
-                    </div>
-                </div>
+        </article>
+    </div>
+    <div class="box" style="width: 20%; margin: auto">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256">
+                    <img
+                        src="https://bulma.io/images/placeholders/256x256.png"
+                        alt="Image"
+                    />
+                </figure>
             </div>
-        </nav>
-        <div style="margin-top: 100px; margin-left: 100px">
-            <figure class="image is-128x128">
-                <img
-                    class="is-rounded"
-                    src="https://bulma.io/images/placeholders/128x128.png"
-                />
-            </figure>
-            <div>
-                <h1 class="title">Title</h1>
-                <h2 class="subtitle">Subtitle</h2>
+        </article>
+    </div>
+    <div class="box" style="width: 20%; margin: auto">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256">
+                    <img
+                        src="https://bulma.io/images/placeholders/256x256.png"
+                        alt="Image"
+                    />
+                </figure>
             </div>
-            <button style="margin-top: 10px" class="button is-success is-light">
-                Follow
-            </button>
-        </div>
-        <nav class="level" style="margin-top: 50px">
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Tweets</p>
-                    <p class="title">3,456</p>
-                </div>
+        </article>
+    </div>
+    <div class="box" style="width: 20%; margin: auto">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256">
+                    <img
+                        src="https://bulma.io/images/placeholders/256x256.png"
+                        alt="Image"
+                    />
+                </figure>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Following</p>
-                    <p class="title">123</p>
-                </div>
+        </article>
+    </div>
+    <div class="box" style="width: 20%; margin: auto">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-256x256">
+                    <img
+                        src="https://bulma.io/images/placeholders/256x256.png"
+                        alt="Image"
+                    />
+                </figure>
             </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Followers</p>
-                    <p class="title">456K</p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading">Likes</p>
-                    <p class="title">789</p>
-                </div>
-            </div>
-        </nav>
-        <div style="margin-left: 150px;margin-right: 130px;">
-            <p class="subtitle">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Temporibus minima necessitatibus beatae esse laboriosam quis
-                accusantium provident voluptatem porro molestias, tempora
-                numquam architecto. Inventore commodi architecto iusto eaque,
-                illo quidem.
-            </p>
-            <button style="margin-top: 10px" class="button is-warning is-light">
-                Edit profile
-            </button>
-        </div>
-
-        <div class="tabs is-centered">
-            <ul>
-                <li class="is-active"><a>Posts</a></li>
-                <li><a>Saved</a></li>
-            </ul>
-        </div>
-        <div class="posts" style="display: flex; flex-wrap: wrap">
-            <div class="box" style="width: 20%; margin: auto">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-256x256">
-                            <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
-                                alt="Image"
-                            />
-                        </figure>
-                    </div>
-                </article>
-            </div>
-            <div class="box" style="width: 20%; margin: auto">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-256x256">
-                            <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
-                                alt="Image"
-                            />
-                        </figure>
-                    </div>
-                </article>
-            </div>
-            <div class="box" style="width: 20%; margin: auto">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-256x256">
-                            <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
-                                alt="Image"
-                            />
-                        </figure>
-                    </div>
-                </article>
-            </div>
-            <div class="box" style="width: 20%; margin: auto">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-256x256">
-                            <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
-                                alt="Image"
-                            />
-                        </figure>
-                    </div>
-                </article>
-            </div>
-            <div class="box" style="width: 20%; margin: auto">
-                <article class="media">
-                    <div class="media-left">
-                        <figure class="image is-256x256">
-                            <img
-                                src="https://bulma.io/images/placeholders/256x256.png"
-                                alt="Image"
-                            />
-                        </figure>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </body>
-</html>
+        </article>
+    </div>
+</div>
+{% endblock %}
