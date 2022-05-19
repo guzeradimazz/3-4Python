@@ -17,75 +17,95 @@
         />
     </head>
     <body>
-        <div class="card" style="width: 50vw; margin: 0 auto; margin-top: 20vh">
-            <div class="card-content">
-                <div class="row center-align">
-                    <form method="post" action="" role="form" class="col s12">
-                        {% csrf_token %}
-                        <h3>Create an account</h3>
-                        <div class="field">
-                            <p class="control has-icons-left has-icons-right">
-                                <label class="label">Username</label>
-                                {{ form.username }}
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left has-icons-right">
-                                <label class="label">Email</label>
-                                {{ form.email }}
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left has-icons-right">
-                                <label class="label">Password</label>
-                                {{ form.password }}
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control has-icons-left has-icons-right">
-                                <label class="label">Confirm password</label>
-                                {{ form.confirm_password }}
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </p>
-                        </div>
-                        <div class="row">
-                            <div class="col s12">
-                                <span style="color: red; font-weight: bold"
-                                    >{{ form.errors }}</span
-                                >
-                            </div>
-                        </div>
-                        <button
-                            type="submit"
-                            name="action"
-                            class="button is-warning"
+        <div class="liveBack">
+            <div
+                class="card"
+                style="width: 50vw; margin: 0 auto; margin-top: 20vh"
+            >
+                <div class="card-content">
+                    <div class="row center-align">
+                        <form
+                            method="post"
+                            action=""
+                            role="form"
+                            class="col s12"
                         >
-                            Register
-                        </button>
-                    </form>
+                            {% csrf_token %}
+                            <h3>Create an account</h3>
+                            <div class="field">
+                                <p
+                                    class="control has-icons-left has-icons-right"
+                                >
+                                    <label class="label">Username</label>
+                                    {{ form.username }}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p
+                                    class="control has-icons-left has-icons-right"
+                                >
+                                    <label class="label">Email</label>
+                                    {{ form.email }}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p
+                                    class="control has-icons-left has-icons-right"
+                                >
+                                    <label class="label">Password</label>
+                                    {{ form.password }}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p
+                                    class="control has-icons-left has-icons-right"
+                                >
+                                    <label class="label"
+                                        >Confirm password</label
+                                    >
+                                    {{ form.confirm_password }}
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col s12">
+                                    <span style="color: red; font-weight: bold"
+                                        >{{ form.errors }}</span
+                                    >
+                                </div>
+                            </div>
+                            <button
+                                type="submit"
+                                name="action"
+                                class="button is-warning"
+                            >
+                                Register
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

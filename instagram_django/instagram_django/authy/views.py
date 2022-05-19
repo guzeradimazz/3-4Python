@@ -17,7 +17,6 @@ def UserProfile(request, username):
 	profile = Profile.objects.get(user=user)
 	articles = profile.favorites.all()
 
-	#Pagination
 	paginator = Paginator(articles, 6)
 	page_number = request.GET.get('page')
 	articles_paginator = paginator.get_page(page_number)

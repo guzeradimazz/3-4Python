@@ -1,0 +1,65 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %} 
+<div class="card" style="width: 50vw; margin: 0 auto; margin-top: 20vh">
+    <div class="card-content">
+        <div class="row center-align">
+            <form method="post" action="" role="form" enctype="multipart/form-data" class="col s12">
+                {% csrf_token %}
+                <h3>Create a post</h3>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <label class="label">Choose your <picture></picture></label>
+                        {{ form.picture }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <label class="label">Caption</label>
+                        {{ form.caption }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control has-icons-left has-icons-right">
+                        <label class="label">Tags (separate tags by ',')</label>
+                        {{ form.tags }}
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-envelope"></i>
+                        </span>
+                        <span class="icon is-small is-right">
+                            <i class="fas fa-check"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <span style="color: red; font-weight: bold"
+                            >{{ form.errors }}</span
+                        >
+                    </div>
+                </div>
+                <button
+                    type="submit"
+                    name="action"
+                    class="button is-success"
+                >
+                    Create 
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

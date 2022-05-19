@@ -1,3 +1,38 @@
 form input {
-    width: 80%;
+    width: 100%;
+    
+}
+.signup {
+    background-color: rgb(245, 194, 98);
+    padding: 9px;
+    margin-top: px;
+    border-radius: 5px;
+    color: #fff;
+}
+.control2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+}
+.liveBack {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: liveBack 15s ease infinite;
+}
+@keyframes liveBack {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

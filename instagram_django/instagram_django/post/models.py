@@ -35,13 +35,11 @@ class Post(models.Model):
     posted= models.DateTimeField(auto_now_add=True)
     tags = models.ManyToManyField(Tag,related_name='tags')
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    likes=models.IntegerField()
+    likes=models.IntegerField(default=0)
 
     def get_absolute_url(self):
         return reverse('postdetails',args=[str(self.id)])
 
-    # def __str__(self):
-    #         return str(self.id)
 
 class Follow(models.Model):
 	follower = models.ForeignKey(User,on_delete=models.CASCADE, null=True, related_name='follower')
@@ -58,7 +56,7 @@ class Stream(models.Model):
         user = post.user
         followers = Follow.objects.all().filter(following=user)
         for follower in followers:
-            stream = Stream(post=post,user=follower.follower,date=post.posted,following=user)
+            stream = Stream(post=post, user=follower.follower, date=post.posted, following=user)
             stream.save()
 
 post_save.connect(Stream.add_post,sender=Post)
