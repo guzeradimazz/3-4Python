@@ -4,28 +4,41 @@ from django.contrib.auth.models import User
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
-
+from post.models import Follow, Post
 from authy.models import Profile
 from django.template import loader
 from django.http import HttpResponse
-
+from django.urls import resolve
 from django.core.paginator import Paginator
 
 # Create your views here.
 def UserProfile(request, username):
 	user = get_object_or_404(User, username=username)
 	profile = Profile.objects.get(user=user)
-	articles = profile.favorites.all()
+	url_name = resolve(request.path).url_name
 
-	paginator = Paginator(articles, 6)
+	if url_name == 'profile':
+		posts = Post.objects.filter(user=user).order_by('-posted')
+	else:
+		posts = profile.favorites.all()
+
+	posts_count = Post.objects.filter(user=user).count()
+	following_count = Follow.objects.filter(follower=user).count()
+	followers_count = Follow.objects.filter(following=user).count()
+
+	paginator = Paginator(posts, 6)
 	page_number = request.GET.get('page')
-	articles_paginator = paginator.get_page(page_number)
+	posts_paginator = paginator.get_page(page_number)
 
 	template = loader.get_template('profile.html')
 
 	context = {
-		'articles': articles_paginator,
+		'posts': posts_paginator,
 		'profile':profile,
+		'url_name':url_name,
+		'posts_count':posts_count,
+		'following_count':following_count,
+		'followers_count':followers_count,
 	}
 
 	return HttpResponse(template.render(context, request))

@@ -1,125 +1,106 @@
-{% extends 'base.html' %} 
-{% load static %} 
-{% block content %}
-<div style="margin-top: 100px; margin-left: 100px">
-    <figure class="image is-128x128">
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div
+    style="
+        margin-top: 100px;
+        margin-left: 100px;
+        display: flex;
+        flex-direction: row;
+    "
+>
+    <figure style="width: 256px; height: 256px" class="image is-256x256">
         <img
             class="is-rounded"
             src="https://bulma.io/images/placeholders/128x128.png"
         />
     </figure>
-    <div>
-        <h1 class="title">Title</h1>
-        <h2 class="subtitle">Subtitle</h2>
+    <div
+        style="
+            margin-left: 10%;
+            display: flex;
+            flex-direction: column;
+            width: 500px;
+        "
+    >
+        <div>
+            <h1 style="font-size: 60px" class="title">{{ profile.user.username }}</h1>
+            <h2 style="font-size: 40px" class="subtitle">@{{ profile.user.username }}</h2>
+        </div>
+        <div
+            style="
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            "
+        >
+            <button
+                style="margin-top: 10px; width: 200px"
+                class="button is-success is-light"
+            >
+                Follow
+            </button>
+            {% if user.is_authenticated and user == profile.user %}
+                <button
+                    style="margin-top: 10px; width: 200px"
+                    class="button is-warning is-light"
+                >
+                    Edit profile
+                </button>
+            {% endif %}
+        </div>
     </div>
-    <button style="margin-top: 10px" class="button is-success is-light">
-        Follow
-    </button>
 </div>
 <nav class="level" style="margin-top: 50px">
     <div class="level-item has-text-centered">
         <div>
             <p class="heading">Tweets</p>
-            <p class="title">3,456</p>
+            <p class="title">{{ posts_count }}</p>
         </div>
     </div>
     <div class="level-item has-text-centered">
         <div>
             <p class="heading">Following</p>
-            <p class="title">123</p>
+            <p class="title">{{ following_count }}</p>
         </div>
     </div>
     <div class="level-item has-text-centered">
         <div>
             <p class="heading">Followers</p>
-            <p class="title">456K</p>
-        </div>
-    </div>
-    <div class="level-item has-text-centered">
-        <div>
-            <p class="heading">Likes</p>
-            <p class="title">789</p>
+            <p class="title">{{ followers_count }}</p>
         </div>
     </div>
 </nav>
 <div style="margin-left: 150px; margin-right: 130px">
     <p class="subtitle">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-        minima necessitatibus beatae esse laboriosam quis accusantium provident
-        voluptatem porro molestias, tempora numquam architecto. Inventore
-        commodi architecto iusto eaque, illo quidem.
+        {% if profile.profile_info %}
+        {{ profile.profile_info }}
+        {% else %}
+        There can be some info's about me, but I'am lazy!!!
+        {% endif %}
     </p>
-    <button style="margin-top: 10px" class="button is-warning is-light">
-        Edit profile
-    </button>
 </div>
-
 <div class="tabs is-centered">
     <ul>
-        <li class="is-active"><a>Posts</a></li>
-        <li><a>Saved</a></li>
+        <li class="{% if url_name == 'profile'%} is-active {% endif %}">
+            <a href="{% url 'profile' profile.user %}">Posts</a>
+        </li>
+        <li
+            class="{% if url_name == 'profilefavorites'%} is-active {% endif %}"
+        >
+            <a href="{% url 'profilefavorites' profile.user %}">Saved</a>
+        </li>
     </ul>
 </div>
-<div class="posts" style="display: flex; flex-wrap: wrap">
-    <div class="box" style="width: 20%; margin: auto">
+<div class="posts wrapper-posts">
+    {% for post in posts %}
+    <div class="box myBox">
         <article class="media">
             <div class="media-left">
-                <figure class="image is-256x256">
-                    <img
-                        src="https://bulma.io/images/placeholders/256x256.png"
-                        alt="Image"
-                    />
-                </figure>
+                <a href="{{ post.get_absolute_url }}">
+                    <img src="{{ post.picture.url }}" alt="Image" />
+                </a>
             </div>
         </article>
     </div>
-    <div class="box" style="width: 20%; margin: auto">
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-256x256">
-                    <img
-                        src="https://bulma.io/images/placeholders/256x256.png"
-                        alt="Image"
-                    />
-                </figure>
-            </div>
-        </article>
-    </div>
-    <div class="box" style="width: 20%; margin: auto">
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-256x256">
-                    <img
-                        src="https://bulma.io/images/placeholders/256x256.png"
-                        alt="Image"
-                    />
-                </figure>
-            </div>
-        </article>
-    </div>
-    <div class="box" style="width: 20%; margin: auto">
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-256x256">
-                    <img
-                        src="https://bulma.io/images/placeholders/256x256.png"
-                        alt="Image"
-                    />
-                </figure>
-            </div>
-        </article>
-    </div>
-    <div class="box" style="width: 20%; margin: auto">
-        <article class="media">
-            <div class="media-left">
-                <figure class="image is-256x256">
-                    <img
-                        src="https://bulma.io/images/placeholders/256x256.png"
-                        alt="Image"
-                    />
-                </figure>
-            </div>
-        </article>
-    </div>
+    {% endfor %}
 </div>
 {% endblock %}

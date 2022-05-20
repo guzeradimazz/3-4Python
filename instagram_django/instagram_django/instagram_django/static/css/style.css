@@ -5,6 +5,19 @@ form input {
     transition: all 0.3s ease;
     transform: scale(1);
 }
+.wrapper-posts{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.myBox{
+    width: 20%;
+    margin: 20px;
+}
+.myBox img{
+    width: 245px;
+    height: 200px;
+}
 .randomBg{
     background: linear-gradient(-40deg, #f7a288, #c4d879, #72dbeb, #608fda, #000);
     background-size: 400% 400%;
