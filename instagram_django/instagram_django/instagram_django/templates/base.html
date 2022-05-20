@@ -52,13 +52,15 @@
                             <a class="navbar-item"> Contact </a>
                             <a class="navbar-item"> Report an issue </a>
                             <hr class="navbar-divider" />
-                            <a class="navbar-item"> Log out </a>
+                            <a href="{% url 'logout' %}" class="navbar-item"> Log out </a>
                         </div>
                     </div>
                 </div>
             </div>
         </nav>
-        {% block content %} {% endblock %} 
-        {% block pagination %} {% endblock %}
+        {% block content %}
+        {% endblock %}
+        {% block pagination %} 
+        {% endblock %}
     </body>
 </html>

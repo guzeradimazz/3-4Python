@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import get_object_or_404, render,redirect
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
@@ -5,21 +6,27 @@ from post.models import Post,Stream,Tag,Likes
 from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from post.forms import NewPostForm
+from authy.models import Profile
 # Create your views here.
+
 
 @login_required
 def index(request):
-    user = request.user
-    posts = Stream.objects.filter(user=user)
-    groups_ids = []
-    for post in posts:
-        groups_ids.append(post.post_id)
-    post_items = Post.objects.filter(id__in=groups_ids).all().order_by('-posted')
-    template = loader.get_template('index.html')
-    context ={
-        'post_items':post_items,
+	user = request.user
+	posts = Stream.objects.filter(user=user)
+	group_ids = []
+	for post in posts:
+		group_ids.append(post.post_id)
+		
+	post_items = Post.objects.all().order_by('-posted')
+    
+	template = loader.get_template('index.html')
+
+	context = {
+        'post_items': post_items,
+        'post_count':post_items.count()
     }
-    return HttpResponse(template.render(context,request))
+	return HttpResponse(template.render(context, request))
 
 @login_required
 def NewPost(request):
@@ -51,16 +58,23 @@ def NewPost(request):
 
 @login_required
 def PostDetails(request, post_id):
-	post = get_object_or_404(Post, id=post_id)
-	template = loader.get_template('post_details.html')
+    post = get_object_or_404(Post, id=post_id)
+    profile = Profile.objects.get(user=request.user)
+    favorited = False
+    template = loader.get_template('post_details.html')
 
-	context = {
-		'post':post,
-	}
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user=request.user)
+        if profile.favorites.filter(id=post_id).exists():
+            favorited=True
 
-	return HttpResponse(template.render(context, request))
+    context = {
+        'post':post,
+        'favorited':favorited,
+    }
 
-@login_required
+    return HttpResponse(template.render(context, request))
+
 def tags(request,tag_slug):
     tag = get_object_or_404(Tag,slug=tag_slug)
     posts = Post.objects.filter(tags=tag).order_by('-posted')
@@ -87,5 +101,19 @@ def like(request, post_id):
 
 	post.likes = current_likes
 	post.save()
+
+	return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
+
+@login_required
+def favorites(request, post_id):
+	user = request.user
+	post = Post.objects.get(id=post_id)
+	profile = Profile.objects.get(user=user)
+
+	if profile.favorites.filter(id=post_id).exists():
+		profile.favorites.remove(post)
+
+	else:
+		profile.favorites.add(post)
 
 	return HttpResponseRedirect(reverse('postdetails', args=[post_id]))

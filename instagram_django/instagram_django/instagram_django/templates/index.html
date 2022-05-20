@@ -1,8 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %} 
 {% block content %} 
+
 {% for post_item in post_items %}
-<div class="POST" style="width: 40%; margin: 0 auto">
+<div class="POST" style="width: 40%; margin: 0 auto;z-index: 1;">
     <div class="card">
         <a href="{{ post_item.get_absolute_url }}">
             <div class="card-image">
@@ -12,6 +13,7 @@
                         alt="Placeholder image"
                     />
                 </figure>
+            </div>
         </a>
         <div class="card-content">
             <div class="media">
@@ -27,16 +29,15 @@
                     <p class="title is-4">{{ post_item.user.username }}</p>
                     <p class="subtitle is-6">@{{ post_item.user.username }}</p>
                 </div>
-                <div class="media-right">
-                    <a href="{% url 'postlike' post.id %}" style="color: red"
+                <div class="media-right" style="z-index: 10;">
+                    <a href="{% url 'postlike' post_item.id %}" style="color: red"
                         ><i
                             class="like material-icons"
-                            style="position: absolute; right: 75px"
+                            style="position: absolute; right: 90px"
                             >favorite</i
                         >
-                        Likes</a
+                        Likes:{{ post_item.likes }}</a
                     >
-                    <p style="color: red">{{ post_item.likes }}</p>
                 </div>
             </div>
 
@@ -50,4 +51,6 @@
         </div>
     </div>
 </div>
-{% endfor %} {% endblock %}
+{% endfor %} 
+
+{% endblock %}

@@ -5,6 +5,11 @@ form input {
     transition: all 0.3s ease;
     transform: scale(1);
 }
+.randomBg{
+    background: linear-gradient(-40deg, #f7a288, #c4d879, #72dbeb, #608fda, #000);
+    background-size: 400% 400%;
+    animation: liveBack 15s ease infinite;
+}
 .like:hover {
     transform: scale(1.35);
     transition: all 0.3s ease;

@@ -1,7 +1,9 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
 
 <div style="width: 60%; margin: 0 auto">
-    <div class="card">
+    <div class="card" style="margin-top: 50px;">
         <div class="card-image">
             <figure class="image is-4by3">
                 <img src="{{ post.picture.url }}" alt="Placeholder image" />
@@ -35,10 +37,24 @@
                         >
                         <p style="color: red"></p>
                     </div>
+                    {% if favorited is True%}
                     <div style="margin-top: 10px;">
                         <a
-                            href="{% url 'postlike' post.id %}"
-                            style="color: rgb(70, 22, 193)"
+                            href="{% url 'postfavorite' post.id %}"
+                            style="color: rgb(125, 236, 103)"
+                            ><i
+                                class="like material-icons"
+                                style="position: absolute; right: 105px"
+                                >send</i
+                            >
+                            Saved</a
+                        >
+                    </div>
+                    {% else %}
+                    <div style="margin-top: 10px;">
+                        <a
+                            href="{% url 'postfavorite' post.id %}"
+                            style="color: rgb(69, 112, 255)"
                             ><i
                                 class="like material-icons"
                                 style="position: absolute; right: 105px"
@@ -47,6 +63,7 @@
                             Save post</a
                         >
                     </div>
+                    {% endif %}
                 </div>
             </div>
 
