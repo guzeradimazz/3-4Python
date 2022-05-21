@@ -5,6 +5,9 @@ form input {
     transition: all 0.3s ease;
     transform: scale(1);
 }
+.navbar-item img{
+    max-height: none !important;
+}
 .wrapper-posts{
     display: flex;
     flex-wrap: wrap;

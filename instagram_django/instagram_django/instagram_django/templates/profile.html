@@ -7,10 +7,11 @@
         flex-direction: row;
     "
 >
-    <figure style="width: 256px; height: 256px" class="image is-256x256">
+    <figure>
         <img
+            style="border-radius:50%;width: 270px; height: 270px;"
             class="is-rounded"
-            src="https://bulma.io/images/placeholders/128x128.png"
+            src="{% if profile.picture.url %} {{ profile.picture.url }} {% else %} 'https://bulma.io/images/placeholders/96x96.png' {% endif %}"
         />
     </figure>
     <div
@@ -22,8 +23,17 @@
         "
     >
         <div>
-            <h1 style="font-size: 60px" class="title">{{ profile.user.username }}</h1>
+            <h1 style="font-size: 60px" class="title">
+            {% if profile.first_name %}
+                {{ profile.first_name }} {{ profile.last_name }} 
+            {% else %}
+                {{ profile.user.username }}
+            {% endif %}</h1>
             <h2 style="font-size: 40px" class="subtitle">@{{ profile.user.username }}</h2>
+        </div>
+        <div>
+            <p>Location: {{ profile.location }}</p>
+            <p>WebSite: {{ profile.url }}</p>
         </div>
         <div
             style="
@@ -54,12 +64,14 @@
         {% endif %}
             </a>
             {% if user.is_authenticated and user == profile.user %}
-                <button
+                <a href="{% url 'edit-profile' %}">
+                    <button
                     style="margin-top: 10px; width: 200px"
                     class="button is-warning is-light"
                 >
                     Edit profile
                 </button>
+                </a>
             {% endif %}
         </div>
     </div>

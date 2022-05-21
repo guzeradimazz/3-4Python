@@ -77,7 +77,7 @@ class EditProfileForm(forms.ModelForm):
 	last_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=False)
 	location = forms.CharField(widget=forms.TextInput(), max_length=25, required=False)
 	url = forms.URLField(widget=forms.TextInput(), max_length=60, required=False)
-	profile_info = forms.CharField(widget=forms.TextInput(), max_length=260, required=False)
+	profile_info = forms.CharField(widget=forms.Textarea(), max_length=260, required=False)
 
 	class Meta:
 		model = Profile
