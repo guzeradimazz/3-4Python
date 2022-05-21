@@ -32,12 +32,27 @@
                 justify-content: space-between;
             "
         >
-            <button
-                style="margin-top: 10px; width: 200px"
+        {% if user.is_authenticated and user != profile.user %}
+            {% if follow_status == True %}
+            <a href="{% url 'follow' profile.user 0 %}">
+                <button
+                style="margin-top: 10px; width: 200px;transition:all .3s ease;"
+                class="button is-warning is-light"
+            >
+                Unfollow
+            </button>
+            </a>
+            {% else %}
+            <a href="{% url 'follow' profile.user 1 %}">
+                <button
+                style="margin-top: 10px; width: 200px;transition:all .3s ease;"
                 class="button is-success is-light"
             >
                 Follow
-            </button>
+            </button></a>
+            {% endif %}
+        {% endif %}
+            </a>
             {% if user.is_authenticated and user == profile.user %}
                 <button
                     style="margin-top: 10px; width: 200px"
