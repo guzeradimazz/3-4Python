@@ -8,6 +8,11 @@ form input {
 .navbar-item img{
     max-height: none !important;
 }
+.input-custom input{
+    border: 1px solid #dbdbdb;
+    height: 80px;
+    border-radius: 3px;
+}
 .wrapper-posts{
     display: flex;
     flex-wrap: wrap;

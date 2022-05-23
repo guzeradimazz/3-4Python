@@ -11,7 +11,7 @@
         <img
             style="border-radius:50%;width: 270px; height: 270px;"
             class="is-rounded"
-            src="{% if profile.picture.url %} {{ profile.picture.url }} {% else %} 'https://bulma.io/images/placeholders/96x96.png' {% endif %}"
+            src="{% if profile.picture %} {{ profile.picture.url }} {% else %} 'https://bulma.io/images/placeholders/96x96.png' {% endif %}"
         />
     </figure>
     <div
