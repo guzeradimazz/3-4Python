@@ -51,6 +51,15 @@ form input {
     justify-content: space-between;
     width: 300px;
 }
+.liveBack2 {
+    width: 100vw;
+    height: 89.2vh;
+    position: absolute;
+    overflow-y: hidden;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: liveBack 15s ease infinite;
+}
 .liveBack {
     width: 100vw;
     height: 100vh;
