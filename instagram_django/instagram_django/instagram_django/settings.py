@@ -4,9 +4,8 @@ import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-&t6j4%v-6spfz58d&4p4e^!9wd-1dnj#9_$wu#bful6%@p462-'
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+DEBUG = False
+ALLOWED_HOSTS = ['instagram-django-guzera.herokuapp.com','127.0.0.1']
 DATABASES={}
 
 
