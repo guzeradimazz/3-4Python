@@ -34,17 +34,14 @@ class TestAuthy(TestCase):
 
     def test_logout(self):
         client = Client()
-        # Check index.html
         response = client.get('/user/logout')
         self.assertEqual(response.status_code, 200)
 
     def test_login(self):
 
-        # First check for the default behavior
         response = self.client.get('/index/')
         self.assertRedirects(response, '/user/login/?next=/user{0}/')
 
-        # Then override the LOGIN_URL setting
         with self.settings(LOGIN_URL='/user/login/'):
             response = self.client.get('/index/')
             self.assertRedirects(response, '/other/login/?next=/user{0}/')
