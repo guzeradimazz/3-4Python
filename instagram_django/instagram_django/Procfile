@@ -1,0 +1,1 @@
+web: gunicorn safe-reaches-97702.wsgi --log-file -
