@@ -48,7 +48,7 @@ def UserProfile(request, username):
 	return HttpResponse(template.render(context, request))
 
 
-def Signup(request):
+async def Signup(request):
 	if request.method == 'POST':
 		form = SignupForm(request.POST)
 		if form.is_valid():
@@ -68,7 +68,7 @@ def Signup(request):
 
 
 @login_required
-def PasswordChange(request):
+async def PasswordChange(request):
 	user = request.user
 	if request.method == 'POST':
 		form = ChangePasswordForm(request.POST)
@@ -87,12 +87,10 @@ def PasswordChange(request):
 
 	return render(request, 'change_password.html', context)
 
-def PasswordChangeDone(request):
-	return render(request, 'change_password_done.html')
-
+async def PasswordChangeDone(request): return render(request, 'change_password_done.html')
 
 @login_required
-def EditProfile(request):
+async def EditProfile(request):
 	user = request.user.id
 	profile = Profile.objects.get(user__id=user)
 
@@ -117,7 +115,7 @@ def EditProfile(request):
 	return render(request, 'edit_profile.html', context)
 
 @login_required
-def follow(request, username, option):
+async def follow(request, username, option):
 	following = get_object_or_404(User, username=username)
 	try:
 		f, created = Follow.objects.get_or_create(follower=request.user, following=following)

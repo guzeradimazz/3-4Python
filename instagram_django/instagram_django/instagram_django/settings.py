@@ -3,16 +3,13 @@ from pathlib import Path
 import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 SECRET_KEY = 'django-insecure-&t6j4%v-6spfz58d&4p4e^!9wd-1dnj#9_$wu#bful6%@p462-'
+
 DEBUG = False
-ALLOWED_HOSTS = ['instagram-django-guzera.herokuapp.com','127.0.0.1']
-DATABASES={}
 
+ALLOWED_HOSTS = ['my-instagram-isp.herokuapp.com', '127.0.0.1']
 
-db_from_env = dj_database_url.config()
-DATABASES['default'] = dj_database_url.config(
-    default='mysql://root:<password>@localhost:3306/<database>',
-)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -28,6 +25,9 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -58,14 +58,21 @@ WSGI_APPLICATION = 'instagram_django.wsgi.application'
 
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'INSTAGRAM',
-#         'USER': 'root',
-#         'PASSWORD': 'jblguzerajbL1',
-#         'HOST':'localhost',
-#         'PORT': '3306',
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'django_db',
+#         'USER' : 'user_name',
+#         'PASSWORD' : 'password',
+#         'HOST' : '127.0.0.1',
+#         'PORT' : '5432',
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -89,6 +96,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, "instagram_django/static"),]
 MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = '/Users/dimaguzercuk/Desktop/instagram/instagram_django/instagram_django/media'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 LOGIN_REDIRECT_URL = '/post/'

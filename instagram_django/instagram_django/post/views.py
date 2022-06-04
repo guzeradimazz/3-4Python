@@ -13,7 +13,7 @@ from comment.forms import CommentForm
 
 
 @login_required
-def index(request):
+async def index(request):
 	user = request.user
 	posts = Stream.objects.filter(user=user)
 	group_ids = []
@@ -31,7 +31,7 @@ def index(request):
 	return HttpResponse(template.render(context, request))
 
 @login_required
-def NewPost(request):
+async def NewPost(request):
     user = request.user.id
     tags_objs=[]
 
@@ -58,7 +58,7 @@ def NewPost(request):
     return render(request,'newpost.html',context)
 
 @login_required
-def PostDetails(request, post_id):
+async def PostDetails(request, post_id):
     post = get_object_or_404(Post, id=post_id)
     user = request.user
     profile = Profile.objects.get(user=request.user)
@@ -94,7 +94,7 @@ def PostDetails(request, post_id):
 
     return HttpResponse(template.render(context, request))
 
-def tags(request,tag_slug):
+async def tags(request,tag_slug):
     tag = get_object_or_404(Tag,slug=tag_slug)
     posts = Post.objects.filter(tags=tag).order_by('-posted')
     template = loader.get_template('tag.html')
@@ -105,7 +105,7 @@ def tags(request,tag_slug):
     return HttpResponse(template.render(context,request))
 
 @login_required
-def like(request, post_id):
+async def like(request, post_id):
 	user = request.user
 	post = Post.objects.get(id=post_id)
 	current_likes = post.likes
@@ -124,7 +124,7 @@ def like(request, post_id):
 	return HttpResponseRedirect(reverse('postdetails', args=[post_id]))
 
 @login_required
-def favorites(request, post_id):
+async def favorites(request, post_id):
 	user = request.user
 	post = Post.objects.get(id=post_id)
 	profile = Profile.objects.get(user=user)
